@@ -1,5 +1,6 @@
 window.onload = function(e) {
   initImageLoader();
+  createMap();
 }
 
 window.onclick = function(e) {
@@ -19,5 +20,5 @@ window.onmousemove = function(e) {
 }
 
 window.onmouseup = function(e) {
-  // mapUp(e);
+   mapUp(e);
 }
