@@ -4,6 +4,7 @@ var mapxOffset, mapyOffset;
 var mapDrag = false;
 var mapPrevX, mapPrevY;
 var mapSize;
+var map = [];
 
 onload = createMap;
 
@@ -13,6 +14,7 @@ function createMap() {
   mapCanvas.height = window.innerHeight - 0.05 * window.innerWidth;
 
   mapctx = mapCanvas.getContext("2d");
+  mapctx.strokeStyle = "#555"
 
   mapWidth = 16;
   mapHeight = 64;
@@ -26,6 +28,9 @@ function createMap() {
   window.onmouseup = mapUp;
 
   mapSize = mapCanvas.width / mapWidth > mapCanvas.height / mapHeight ? mapCanvas.width / mapWidth : mapCanvas.height / mapHeight;
+
+  for (var i = 0; i < mapWidth * mapHeight; i++)
+    map[i] = -1;
 
   drawMapGrid();
 }
@@ -64,11 +69,20 @@ function drawMapGrid() {
   mapctx.beginPath();
 
   for (var i = 0; i < mapWidth; i++) {
+    for (var j = 0; j < mapHeight; j++) {
+      if (map[j * mapWidth + i] == -1)
+        mapctx.fillRect(mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize * (i + 1), mapSize * (j + 1));
+      else
+        mapctx.drawImage(image, tileSize * i, tileSize * j, tileSize * (i + 1), tileSize * (j + 1), mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize * (i + 1), mapSize * (j + 1));
+    }
+  }
+
+  for (var i = 1; i < mapWidth; i++) {
       mapctx.moveTo(mapxOffset + mapSize * i, 0);
       mapctx.lineTo(mapxOffset + mapSize * i, mapCanvas.height);
   }
 
-  for (var i = 0; i < mapHeight; i++) {
+  for (var i = 1; i < mapHeight; i++) {
       mapctx.moveTo(0, mapyOffset + mapSize * i);
       mapctx.lineTo(mapCanvas.width, mapyOffset + mapSize * i);
   }
