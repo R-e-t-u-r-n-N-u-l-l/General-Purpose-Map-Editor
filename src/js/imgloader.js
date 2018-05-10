@@ -26,7 +26,7 @@ function processImage(file) {
   ImageLoaderData.loadedImage.src = window.URL.createObjectURL(file);
 
   ImageLoaderData.loadedImage.onload = function() {
-    if(ImageLoaderData.loadedImage.height < ImageLoaderData.loadedImage.width) {
+    if(ImageLoaderData.loadedImage.height > ImageLoaderData.loadedImage.width) {
       var width   = ImageLoaderData.display.width;
       var height  = ImageLoaderData.display.width * (ImageLoaderData.loadedImage.height / ImageLoaderData.loadedImage.width);
     }
