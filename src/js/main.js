@@ -8,7 +8,7 @@ window.onclick = function(e) {
 }
 
 window.oncontextmenu = function(e) {
-
+  e.preventDefault();
 }
 
 window.onmousedown = function(e) {
