@@ -46,6 +46,8 @@ function processImage(file) {
         (ImageLoaderData.display.width - width) / 2,
         (ImageLoaderData.display.height - height) / 2,
         width, height);
+
+    drawMapGrid();
   }
 }
 

@@ -46,6 +46,13 @@
   text-align: center;
   font-family: Arial;
   font-size: calc((2vw + 2vh) / 2);
+  color: #111;
+}
+
+#inputfield > label > span > i {
+  margin-bottom: 1.5vh;
+  font-size: calc((4vw + 4vh) / 2);
+  color: #444;
 }
 
 #inputfield > label > span.hidden {
