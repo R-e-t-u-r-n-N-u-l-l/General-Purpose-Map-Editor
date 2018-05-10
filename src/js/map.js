@@ -4,13 +4,12 @@ var mapxOffset, mapyOffset;
 var mapDrag = false, mapDraw = false;
 var mapPrevX, mapPrevY;
 var currentTile = 0;
-var tileSize = 32;
 var mapSize;
 var map = [];
 
 onload = createMap;
 
-function createMap() {
+function initMap() {
   mapCanvas = document.getElementById("map_canvas");
   mapCanvas.width = 0.45 * window.innerWidth;
   mapCanvas.height = window.innerHeight - 0.05 * window.innerWidth;
@@ -84,7 +83,7 @@ function drawMapGrid() {
       if (map[j * mapWidth + i] == -1)
         mapctx.fillRect(mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize * (i + 1), mapSize * (j + 1));
       else
-        mapctx.drawImage(ImageLoaderData.loadedImage, tileSize * (map[j * mapWidth + i] % (ImageLoaderData.loadedImage.width / tileSize)), tileSize * Math.floor(map[j * mapWidth + i] / (ImageLoaderData.loadedImage.height / tileSize)), tileSize, tileSize, mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize, mapSize);
+        mapctx.drawImage(ImageLoaderData.loadedImage, ImageLoaderData.tilesize * (map[j * mapWidth + i] % (ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize)), ImageLoaderData.tilesize * Math.floor(map[j * mapWidth + i] / (ImageLoaderData.loadedImage.height / ImageLoaderData.tilesize)), ImageLoaderData.tilesize, ImageLoaderData.tilesize, mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize, mapSize);
     }
   }
 

@@ -1,6 +1,6 @@
 window.onload = function(e) {
   initImageLoader();
-  createMap();
+  initMap();
 }
 
 window.onclick = function(e) {

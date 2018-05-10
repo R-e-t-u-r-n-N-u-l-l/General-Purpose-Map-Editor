@@ -63,6 +63,7 @@ function onFileInput(e) {
 function onTilesizeChange(e) {
   e.preventDefault();
   ImageLoaderData.tilesize = parseInt(ImageLoaderData.sizeInput.value);
+  drawMapGrid();
 }
 
 function onFileOver(e) {
