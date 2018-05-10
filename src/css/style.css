@@ -1,0 +1,32 @@
+:root {
+  --bg_color: #4A2600;
+  --window_color: #8A5127;
+  --border_color: #866137;
+  --border_width: 5px;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg_color);
+  overflow: hidden;
+}
+
+.window {
+  position: absolute;
+  top: 0;
+  background-color: var(--window_color);
+  border: 5px solid var(--border_color);
+  height: calc(100vh - 10px);
+}
+
+#toolbar {
+  border-radius: 0 2vh 2vh 0;
+  left: calc(-1 * var(--border_width));
+  width: 15vw;
+}
+
+#spritesheet {
+  border-radius: 2vh 0 0 2vh;
+  margin-left: 65vw;
+  width: 35vw;
+}
