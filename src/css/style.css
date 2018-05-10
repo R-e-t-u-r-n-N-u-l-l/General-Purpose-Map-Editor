@@ -40,7 +40,15 @@ canvas {
 }
 
 #map_canvas {
+  position: absolute;
   left: calc(15vw + var(--border_width));
+  margin: 2.5vw;
+  background-color: white;
 }
 
-#sprite_canvas {}
+#sprite_canvas {
+  position: absolute;
+  margin: 2.5vw;
+  background-color: white;
+}
+
