@@ -1,8 +1,10 @@
 var mapCanvas, mapctx;
 var mapWidth, mapHeight;
 var mapxOffset, mapyOffset;
-var mapDrag = false;
+var mapDrag = false, mapDraw = false;
 var mapPrevX, mapPrevY;
+var currentTile = 0;
+var tileSize = 32;
 var mapSize;
 var map = [];
 
@@ -25,8 +27,6 @@ function createMap() {
   mapCanvas.onmousemove = mapMove;
   mapCanvas.oncontextmenu = function(e) { e.preventDefault(); };
 
-  window.onmouseup = mapUp;
-
   mapSize = mapCanvas.width / mapWidth > mapCanvas.height / mapHeight ? mapCanvas.width / mapWidth : mapCanvas.height / mapHeight;
 
   for (var i = 0; i < mapWidth * mapHeight; i++)
@@ -38,6 +38,10 @@ function createMap() {
 function mapDown(e) {
   if (e.button == 2)
     mapDrag = true;
+  if (e.button == 0) {
+    mapDraw = true;
+    map[Math.floor((mapPrevY - mapyOffset) / mapSize) * mapWidth + Math.floor((mapPrevX - mapxOffset) / mapSize)] = currentTile;
+  }
 
   mapPrevX = e.clientX - mapCanvas.getBoundingClientRect().left;
   mapPrevY = e.clientY - mapCanvas.getBoundingClientRect().top;
@@ -47,21 +51,28 @@ function mapMove(e) {
   if (mapDrag) {
     mapxOffset += e.clientX - mapCanvas.getBoundingClientRect().left - mapPrevX;
     mapyOffset += e.clientY - mapCanvas.getBoundingClientRect().top - mapPrevY;
-    mapPrevX = e.clientX - mapCanvas.getBoundingClientRect().left;
-    mapPrevY = e.clientY - mapCanvas.getBoundingClientRect().top;
-
-    mapxOffset = mapxOffset > 0 ? 0 : mapxOffset;
-    mapyOffset = mapyOffset > 0 ? 0 : mapyOffset;
-    mapxOffset = mapxOffset < -mapSize * mapWidth + mapCanvas.width ? -mapSize * mapWidth + mapCanvas.width : mapxOffset;
-    mapyOffset = mapyOffset < -mapSize * mapHeight + mapCanvas.height ? -mapSize * mapHeight + mapCanvas.height : mapyOffset;
-
-    drawMapGrid();
   }
+
+  mapPrevX = e.clientX - mapCanvas.getBoundingClientRect().left;
+  mapPrevY = e.clientY - mapCanvas.getBoundingClientRect().top;
+
+  mapxOffset = mapxOffset > 0 ? 0 : mapxOffset;
+  mapyOffset = mapyOffset > 0 ? 0 : mapyOffset;
+  mapxOffset = mapxOffset < -mapSize * mapWidth + mapCanvas.width ? -mapSize * mapWidth + mapCanvas.width : mapxOffset;
+  mapyOffset = mapyOffset < -mapSize * mapHeight + mapCanvas.height ? -mapSize * mapHeight + mapCanvas.height : mapyOffset;
+
+  if (mapDraw)
+    map[Math.floor((mapPrevY - mapyOffset) / mapSize) * mapWidth + Math.floor((mapPrevX - mapxOffset) / mapSize)] = currentTile;
+
+  if (mapDraw || mapDrag)
+    drawMapGrid();
 }
 
 function mapUp(e) {
   if (e.button == 2)
     mapDrag = false;
+  if (e.button == 0)
+    mapDraw = false;
 }
 
 function drawMapGrid() {
@@ -73,7 +84,7 @@ function drawMapGrid() {
       if (map[j * mapWidth + i] == -1)
         mapctx.fillRect(mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize * (i + 1), mapSize * (j + 1));
       else
-        mapctx.drawImage(image, tileSize * (map[j * mapWidth + i] % (image.width / tileSize)), tileSize * Math.floor(map[j * mapWidth + i] / (image.width / tileSize)), tileSize, tileSize, mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize * (i + 1), mapSize * (j + 1));
+        mapctx.drawImage(ImageLoaderData.loadedImage, tileSize * (map[j * mapWidth + i] % (ImageLoaderData.loadedImage.width / tileSize)), tileSize * Math.floor(map[j * mapWidth + i] / (ImageLoaderData.loadedImage.height / tileSize)), tileSize, tileSize, mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize, mapSize);
     }
   }
 
