@@ -38,6 +38,7 @@
   font-family: Arial;
   font-size: calc((2vw + 2vh) / 2);
 }
+
 #inputfield > label > span.hidden {
   display: none;
 }

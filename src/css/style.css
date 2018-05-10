@@ -20,12 +20,12 @@ body {
   height: calc(100vh - 10px);
 }
 
-canvas {
+/* canvas {
   position: absolute;
   margin: 2.5vw;
   background-color: white;
   border: 3px solid black;
-}
+} */
 
 #toolbar {
   border-radius: 0 2vh 2vh 0;
