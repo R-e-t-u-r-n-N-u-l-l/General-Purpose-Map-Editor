@@ -35,6 +35,8 @@ function processImage(file) {
       var width   = ImageLoaderData.display.height * (ImageLoaderData.loadedImage.width / ImageLoaderData.loadedImage.height);
     }
     ImageLoaderData.display.getContext('2d')
+      .clearRect(0, 0, ImageLoaderData.display.width, ImageLoaderData.display.height);
+    ImageLoaderData.display.getContext('2d')
       .drawImage(
         ImageLoaderData.loadedImage,
         (ImageLoaderData.display.width - width) / 2,
