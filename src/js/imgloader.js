@@ -42,10 +42,7 @@ function processImage(file) {
       .clearRect(0, 0, ImageLoaderData.display.width, ImageLoaderData.display.height);
     ImageLoaderData.display.getContext('2d')
       .drawImage(
-        ImageLoaderData.loadedImage,
-        (ImageLoaderData.display.width - width) / 2,
-        (ImageLoaderData.display.height - height) / 2,
-        width, height);
+        ImageLoaderData.loadedImage, 0, 0, width, height);
 
     drawMapGrid();
   }
