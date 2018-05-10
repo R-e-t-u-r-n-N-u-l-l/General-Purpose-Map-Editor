@@ -26,21 +26,9 @@ body {
   width: 15vw;
 }
 
-#spritesheet {
-  border-radius: 2vh 0 0 2vh;
-  margin-left: 65vw;
-  width: 35vw;
-}
-
 #map_canvas {
   position: absolute;
   left: calc(15vw + var(--border_width));
-  margin: 2.5vw;
-  background-color: white;
-}
-
-#sprite_canvas {
-  position: absolute;
   margin: 2.5vw;
   background-color: white;
 }

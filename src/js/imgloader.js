@@ -10,8 +10,8 @@ function initImageLoader() {
   ImageLoaderData.inputTag    = document.querySelector('#inputfield > input');
   ImageLoaderData.display     = document.querySelector('#sprite_canvas');
 
-  ImageLoaderData.display.width   = ImageLoaderData.inputField.getBoundingClientRect().width * 0.8;
-  ImageLoaderData.display.height  = ImageLoaderData.display.width;
+  ImageLoaderData.display.width   = ImageLoaderData.inputField.getBoundingClientRect().width;
+  ImageLoaderData.display.height  = ImageLoaderData.inputField.getBoundingClientRect().height;
 
   ImageLoaderData.inputField.addEventListener('dragover', onFileOver);
   ImageLoaderData.inputField.addEventListener('drop', onFileDrop);
@@ -20,21 +20,23 @@ function initImageLoader() {
 }
 
 function processImage(file) {
-  var image = new Image();
-  image.src = window.URL.createObjectURL(file);
+  document.querySelector('#inputfield > label > span').classList.add('hidden');
 
-  image.onload = function() {
-    if(image.height < image.width) {
+  ImageLoaderData.loadedImage = new Image();
+  ImageLoaderData.loadedImage.src = window.URL.createObjectURL(file);
+
+  ImageLoaderData.loadedImage.onload = function() {
+    if(ImageLoaderData.loadedImage.height < ImageLoaderData.loadedImage.width) {
       var width   = ImageLoaderData.display.width;
-      var height  = ImageLoaderData.display.width * (image.height / image.width);
+      var height  = ImageLoaderData.display.width * (ImageLoaderData.loadedImage.height / ImageLoaderData.loadedImage.width);
     }
     else {
       var height  = ImageLoaderData.display.height;
-      var width   = ImageLoaderData.display.height * (image.width / image.height);
+      var width   = ImageLoaderData.display.height * (ImageLoaderData.loadedImage.width / ImageLoaderData.loadedImage.height);
     }
     ImageLoaderData.display.getContext('2d')
       .drawImage(
-        image,
+        ImageLoaderData.loadedImage,
         (ImageLoaderData.display.width - width) / 2,
         (ImageLoaderData.display.height - height) / 2,
         width, height);
