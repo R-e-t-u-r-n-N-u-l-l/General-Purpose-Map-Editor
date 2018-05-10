@@ -1,13 +1,16 @@
 const ImageLoaderData = {
-  inputTag:     null,
+  fileInput:    null,
+  sizeInput:    null,
   inputField:   null,
   loadedImage:  null,
+  tilesize:     16,
   display:      null
 };
 
 function initImageLoader() {
   ImageLoaderData.inputField  = document.querySelector('#inputfield');
-  ImageLoaderData.inputTag    = document.querySelector('#inputfield > input');
+  ImageLoaderData.fileInput   = document.querySelector('#inputfield > #file');
+  ImageLoaderData.sizeInput   = document.querySelector('#inputfield > #tilesize');
   ImageLoaderData.display     = document.querySelector('#sprite_canvas');
 
   ImageLoaderData.display.width   = ImageLoaderData.inputField.getBoundingClientRect().width;
@@ -16,7 +19,8 @@ function initImageLoader() {
   ImageLoaderData.inputField.addEventListener('dragover', onFileOver);
   ImageLoaderData.inputField.addEventListener('drop', onFileDrop);
 
-  ImageLoaderData.inputTag.addEventListener('change', onInputChange);
+  ImageLoaderData.fileInput.addEventListener('change', onFileInput);
+  ImageLoaderData.sizeInput.addEventListener('change', onTilesizeChange);
 }
 
 function processImage(file) {
@@ -50,9 +54,15 @@ function onFileDrop(e) {
   processImage(e.dataTransfer.files[0]);
 }
 
-function onInputChange(e) {
+function onFileInput(e) {
   e.preventDefault();
-  processImage(ImageLoaderData.inputTag.files[0]);
+  processImage(ImageLoaderData.fileInput.files[0]);
+}
+
+function onTilesizeChange(e) {
+  e.preventDefault();
+  ImageLoaderData.tilesize = parseInt(ImageLoaderData.sizeInput.value);
+  console.log('hi')
 }
 
 function onFileOver(e) {

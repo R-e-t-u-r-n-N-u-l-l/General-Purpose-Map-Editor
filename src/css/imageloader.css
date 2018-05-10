@@ -13,7 +13,16 @@
   background: #eee;
 }
 
-#inputfield > input {
+#inputfield > #tilesize {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translate(0, 100%);
+  border: none;
+  background: #eee;
+}
+
+#inputfield > #file {
   display: none;
 }
 

@@ -17,13 +17,14 @@
 
     <div class="window" id="spritesheet">
 
-      <form id="inputfield">
-        
-        <canvas id="sprite_canvas"></canvas>
-        <input id="input" type="file" accept=".png, .jpg, .jpeg, .gif" />
-        <label for="input"><span>upload your image here</span></label>
+      <div id="inputfield">
 
-      </form>
+        <canvas id="sprite_canvas"></canvas>
+        <input id="file" type="file" accept=".png, .jpg, .jpeg, .gif" />
+        <label for="file"><span>upload your image here</span></label>
+        <input id="tilesize" type=number min=1 value=16 autocomplete="off" />
+
+      </div>
 
     </div>
 
