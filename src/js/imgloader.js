@@ -2,31 +2,33 @@ const ImageLoaderData = {
   fileInput:    null,
   sizeInput:    null,
   inputField:   null,
-  loadedImage:  null,
+  loadedImage:  new Image(),
   tilesize:     16,
   display:      null
 };
 
 function initImageLoader() {
-  ImageLoaderData.inputField  = document.querySelector('#inputfield');
-  ImageLoaderData.fileInput   = document.querySelector('#inputfield > #file');
-  ImageLoaderData.sizeInput   = document.querySelector('#inputfield > #tilesize');
-  ImageLoaderData.display     = document.querySelector('#sprite_canvas');
+  ImageLoaderData.inputField  = document.querySelector("#inputfield");
+  ImageLoaderData.fileInput   = document.querySelector("#inputfield > #file");
+  ImageLoaderData.sizeInput   = document.querySelector("#inputfield > #tilesize");
+  ImageLoaderData.display     = document.querySelector("#sprite_canvas");
 
   ImageLoaderData.display.width   = ImageLoaderData.inputField.getBoundingClientRect().width;
   ImageLoaderData.display.height  = ImageLoaderData.inputField.getBoundingClientRect().height;
 
-  ImageLoaderData.inputField.addEventListener('dragover', onFileOver);
-  ImageLoaderData.inputField.addEventListener('drop', onFileDrop);
+  ImageLoaderData.inputField.addEventListener("dragover", onFileOver);
+  ImageLoaderData.inputField.addEventListener("drop", onFileDrop);
 
-  ImageLoaderData.fileInput.addEventListener('change', onFileInput);
-  ImageLoaderData.sizeInput.addEventListener('change', onTilesizeChange);
+  ImageLoaderData.fileInput.addEventListener("change", onFileInput);
+  ImageLoaderData.sizeInput.addEventListener("change", onTilesizeChange);
 }
 
 function processImage(file) {
-  document.querySelector('#inputfield > label > span').classList.add('hidden');
+  if(file.type.split("/")[0] != "image")
+    return;
 
-  ImageLoaderData.loadedImage = new Image();
+  document.querySelector("#inputfield > label > span").classList.add("hidden");
+
   ImageLoaderData.loadedImage.src = window.URL.createObjectURL(file);
 
   ImageLoaderData.loadedImage.onload = function() {
@@ -38,9 +40,9 @@ function processImage(file) {
       var height  = ImageLoaderData.display.height;
       var width   = ImageLoaderData.display.height * (ImageLoaderData.loadedImage.width / ImageLoaderData.loadedImage.height);
     }
-    ImageLoaderData.display.getContext('2d')
+    ImageLoaderData.display.getContext("2d")
       .clearRect(0, 0, ImageLoaderData.display.width, ImageLoaderData.display.height);
-    ImageLoaderData.display.getContext('2d')
+    ImageLoaderData.display.getContext("2d")
       .drawImage(
         ImageLoaderData.loadedImage, 0, 0, width, height);
 
