@@ -64,7 +64,6 @@ function onFileInput(e) {
 function onTilesizeChange(e) {
   e.preventDefault();
   ImageLoaderData.tilesize = parseInt(ImageLoaderData.sizeInput.value);
-  console.log('hi')
 }
 
 function onFileOver(e) {
