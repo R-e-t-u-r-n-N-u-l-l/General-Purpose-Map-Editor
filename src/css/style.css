@@ -3,6 +3,7 @@
   --window_color: #8A5127;
   --border_color: #866137;
   --border_width: 5px;
+  --sprite_canvas_size: 30vw;
 }
 
 body {
@@ -19,9 +20,16 @@ body {
   height: calc(100vh - 10px);
 }
 
+canvas {
+  position: absolute;
+  margin: 2.5vw;
+  background-color: white;
+  border: 3px solid black;
+}
+
 #toolbar {
   border-radius: 0 2vh 2vh 0;
-  left: calc(-1 * var(--border_width));
+  margin-left: calc(-1 * var(--border_width));
   width: 15vw;
 }
 
@@ -30,3 +38,9 @@ body {
   margin-left: 65vw;
   width: 35vw;
 }
+
+#map_canvas {
+  left: calc(15vw + var(--border_width));
+}
+
+#sprite_canvas {}
