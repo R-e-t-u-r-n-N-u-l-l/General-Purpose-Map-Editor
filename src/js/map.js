@@ -73,7 +73,7 @@ function drawMapGrid() {
       if (map[j * mapWidth + i] == -1)
         mapctx.fillRect(mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize * (i + 1), mapSize * (j + 1));
       else
-        mapctx.drawImage(image, tileSize * i, tileSize * j, tileSize * (i + 1), tileSize * (j + 1), mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize * (i + 1), mapSize * (j + 1));
+        mapctx.drawImage(image, tileSize * (map[j * mapWidth + i] % (image.width / tileSize)), tileSize * Math.floor(map[j * mapWidth + i] / (image.width / tileSize)), tileSize, tileSize, mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize * (i + 1), mapSize * (j + 1));
     }
   }
 
