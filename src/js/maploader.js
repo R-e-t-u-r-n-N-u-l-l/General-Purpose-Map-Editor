@@ -32,3 +32,20 @@ function processMapData(data) {
 
   initMap();
 }
+
+function downloadMap() {
+  var data = MapLoader.width + ", " + MapLoader.height + '\n';
+
+  for (var i = 0; i < MapLoader.height; i++) {
+    for (var j = 0; j < MapLoader.width - 1; j++)
+      data += MapLoader.mapData[i * MapLoader.height + j] + ", ";
+    data += MapLoader.mapData[i * MapLoader.height + (MapLoader.width - 1)];
+    data += '\n';
+  }
+
+  var link = document.createElement('a');
+  link.download = 'map.txt';
+  var blob = new Blob([data], {type: 'text/plain'});
+  link.href = window.URL.createObjectURL(blob);
+  link.click();
+}
