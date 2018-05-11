@@ -11,7 +11,7 @@
   width: 30vw;
   height: 30vw;
   background: #eee;
-  border-radius: 25px 25px 25px 0;
+  border-radius: 20px 20px 20px 0;
   border: var(--border_width) solid var(--border_color);
   filter: drop-shadow(0 0 10px var(--bg_color));
 }
@@ -69,7 +69,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  border-radius: 25px;
+  border-radius: 15px 15px 15px 0;
 }
 
 @keyframes bounce {
