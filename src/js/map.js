@@ -39,7 +39,7 @@ function initMap() {
   mapSize = mapCanvas.width / mapWidth > mapCanvas.height / mapHeight ? mapCanvas.width / mapWidth : mapCanvas.height / mapHeight;
 
   for (var i = 0; i < mapWidth * mapHeight; i++)
-    map[i] = -1;
+    map[i] = 0;
 
   drawMapGrid();
 }
@@ -89,14 +89,9 @@ function drawMapGrid() {
   mapctx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
   mapctx.beginPath();
 
-  for (var i = 0; i < mapWidth; i++) {
-    for (var j = 0; j < mapHeight; j++) {
-      if (map[j * mapWidth + i] == -1)
-        mapctx.fillRect(mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize * (i + 1), mapSize * (j + 1));
-      else
+  for (var i = 0; i < mapWidth; i++)
+    for (var j = 0; j < mapHeight; j++)
         mapctx.drawImage(ImageLoaderData.loadedImage, ImageLoaderData.tilesize * Math.floor(map[j * mapWidth + i] % (ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize)), ImageLoaderData.tilesize * Math.floor(map[j * mapWidth + i] / (ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize)), ImageLoaderData.tilesize, ImageLoaderData.tilesize, mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize, mapSize);
-    }
-  }
 
   for (var i = 1; i < mapWidth; i++) {
       mapctx.moveTo(mapxOffset + mapSize * i, 0);
