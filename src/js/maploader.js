@@ -20,7 +20,7 @@ function processMapData(data) {
   for (var i = 1; i < lines.length; i++) {
     var values = lines[i].split(", ");
     for (var j = 0; j < values.length; j++)
-      MapLoader.mapData[j] = parseInt(values);
+      MapLoader.mapData[(i - 1) * MapLoader.width + j] = parseInt(values);
   }
 
   initMap();
