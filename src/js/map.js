@@ -7,8 +7,6 @@ var currentTile = 0;
 var mapSize;
 var map = [];
 
-onload = createMap;
-
 function initMap() {
   mapCanvas = document.getElementById("map_canvas");
   mapCanvas.width = 0.45 * window.innerWidth;
@@ -40,6 +38,7 @@ function mapDown(e) {
   if (e.button == 0) {
     mapDraw = true;
     map[Math.floor((mapPrevY - mapyOffset) / mapSize) * mapWidth + Math.floor((mapPrevX - mapxOffset) / mapSize)] = currentTile;
+    drawMapGrid();
   }
 
   mapPrevX = e.clientX - mapCanvas.getBoundingClientRect().left;

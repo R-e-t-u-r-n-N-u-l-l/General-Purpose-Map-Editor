@@ -47,6 +47,7 @@ function processImage(file) {
         ImageLoaderData.loadedImage, 0, 0, width, height);
 
     drawMapGrid();
+    initSpriteSheet();
   }
 }
 
@@ -64,6 +65,7 @@ function onTilesizeChange(e) {
   e.preventDefault();
   ImageLoaderData.tilesize = parseInt(ImageLoaderData.sizeInput.value);
   drawMapGrid();
+  initSpriteSheet();
 }
 
 function onFileOver(e) {
