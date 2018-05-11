@@ -11,6 +11,7 @@ var spritePrevX, spritePrevY;
 var startX, startY;
 var spriteSize;
 var spriteDrag = false;
+var spriteDraw = false;
 
 function initSpriteSheet() {
   spritectx = ImageLoaderData.display.getContext("2d");
@@ -43,6 +44,7 @@ function spriteDown(e) {
   if (e.button == 2)
     spriteDrag = true;
   if (e.button == 0) {
+    spriteDraw = true;
     startX = e.clientX - ImageLoaderData.display.getBoundingClientRect().left;
     startY = e.clientY - ImageLoaderData.display.getBoundingClientRect().top;
     SpriteSheet.currentTile[0] = Math.floor((startY - spriteyOffset) / spriteSize) * Math.ceil(ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize) + Math.floor((startX - spritexOffset) / spriteSize);
@@ -66,21 +68,23 @@ function spriteMove(e) {
   spritexOffset = spritexOffset < -spriteWidth + ImageLoaderData.display.width ? -spriteWidth + ImageLoaderData.display.width : spritexOffset;
   spriteyOffset = spriteyOffset < -spriteHeight + ImageLoaderData.display.height ? -spriteHeight + ImageLoaderData.display.height : spriteyOffset;
 
-  if (Keys["Shift"]) {
-    SpriteSheet.width = Math.floor((spritePrevX - spritexOffset) / spriteSize) - Math.floor((startX - spritexOffset) / spriteSize);
-    SpriteSheet.height = Math.floor((spritePrevY - spriteyOffset) / spriteSize) - Math.floor((startY - spriteyOffset) / spriteSize);
+  if (spriteDraw) {
+    SpriteSheet.width = Math.floor((spritePrevX - spritexOffset) / spriteSize) - Math.floor((startX - spritexOffset) / spriteSize) + 1;
+    SpriteSheet.height = Math.floor((spritePrevY - spriteyOffset) / spriteSize) - Math.floor((startY - spriteyOffset) / spriteSize) + 1;
     for (var i = 0; i < SpriteSheet.width; i++)
       for (var j = 0; j < SpriteSheet.height; j++)
         SpriteSheet.currentTile[j * SpriteSheet.width + i] = (Math.floor((startY - spriteyOffset) / spriteSize) + j) * Math.ceil(ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize) + (Math.floor((startX - spritexOffset) / spriteSize) + i);
   }
 
-  if (spriteDrag || Keys["Shift"])
+  if (spriteDrag || spriteDraw)
     drawSpriteGrid();
 }
 
 function spriteUp(e) {
   if (e.button == 2)
     spriteDrag = false;
+  if (e.button == 0)
+    spriteDraw = false;
 }
 
 function drawSpriteGrid() {

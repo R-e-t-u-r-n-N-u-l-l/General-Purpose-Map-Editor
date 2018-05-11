@@ -2,6 +2,7 @@ var mapCanvas, mapctx;
 var mapxOffset, mapyOffset;
 var mapDrag = false, mapDraw = false;
 var mapPrevX, mapPrevY;
+var validX, validY;
 var mapSize;
 
 function initMap() {
@@ -15,6 +16,7 @@ function initMap() {
   mapctx.fillStyle    = "#222";
 
   mapxOffset = mapyOffset = 0;
+  validX = validY = 0;
 
   mapCanvas.onmousedown = mapDown;
   mapCanvas.onmousemove = mapMove;
@@ -67,9 +69,18 @@ function mapUp(e) {
 }
 
 function changeMap() {
-  for (var i = 0; i < SpriteSheet.width; i++)
-    for (var j = 0; j < SpriteSheet.height; j++)
-      MapLoader.mapData[Math.floor((mapPrevY - mapyOffset) / mapSize + j) * MapLoader.width + Math.floor((mapPrevX - mapxOffset) / mapSize + i)] = SpriteSheet.currentTile[j * SpriteSheet.width + i];
+  // if(Math.abs(Math.floor((mapPrevX - mapxOffset) / mapSize) - validX) >= SpriteSheet.width || Math.abs(Math.floor((mapPrevY - mapyOffset) / mapSize) - validY) >= SpriteSheet.height) {
+  //   validX = Math.floor((mapPrevX - mapxOffset) / mapSize);
+  //   validY = Math.floor((mapPrevY - mapyOffset) / mapSize);
+  //   console.log(validX);
+  // } else
+  //   return;
+  for (var i = 0; i < SpriteSheet.width; i++) {
+    for (var j = 0; j < SpriteSheet.height; j++) {
+      if (Math.floor((mapPrevX - mapxOffset) / mapSize + i) < MapLoader.width)
+        MapLoader.mapData[Math.floor((mapPrevY - mapyOffset) / mapSize + j) * MapLoader.width + Math.floor((mapPrevX - mapxOffset) / mapSize + i)] = SpriteSheet.currentTile[j * SpriteSheet.width + i];
+    }
+  }
 }
 
 function drawMapGrid() {
