@@ -24,5 +24,5 @@ body {
   position: relative;
   margin-left: calc((60vw - 45vw) / 2);
   margin-top: calc((100vh - 45vw) / 2);
-  background-color: #222;
+  background-color: rgb(30, 30, 30, 0.8);
 }
