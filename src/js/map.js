@@ -12,6 +12,7 @@ function initMap() {
   mapCanvas.height = window.innerHeight - 0.05 * window.innerWidth;
 
   mapctx = mapCanvas.getContext("2d");
+  mapctx.imageSmoothingEnabled = false;
   mapctx.strokeStyle = "#555"
 
   mapWidth = 16;

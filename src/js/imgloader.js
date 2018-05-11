@@ -13,8 +13,10 @@ function initImageLoader() {
   ImageLoaderData.sizeInput   = document.querySelector("#inputfield > #tilesize");
   ImageLoaderData.display     = document.querySelector("#sprite_canvas");
 
-  ImageLoaderData.display.width   = ImageLoaderData.inputField.getBoundingClientRect().width;
-  ImageLoaderData.display.height  = ImageLoaderData.inputField.getBoundingClientRect().height;
+  ImageLoaderData.display.style.width   = "100%";
+  ImageLoaderData.display.style.height  = "100%";
+  ImageLoaderData.display.width   = ImageLoaderData.display.offsetWidth;
+  ImageLoaderData.display.height  = ImageLoaderData.display.offsetHeight;
 
   ImageLoaderData.inputField.addEventListener("dragover", onFileOver);
   ImageLoaderData.inputField.addEventListener("drop", onFileDrop);
