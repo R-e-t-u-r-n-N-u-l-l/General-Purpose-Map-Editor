@@ -12,7 +12,8 @@ function resizeMap() {
 
   mapctx = mapCanvas.getContext("2d");
   mapctx.imageSmoothingEnabled = false;
-  mapctx.strokeStyle = "#555"
+  mapctx.strokeStyle  = "#555"
+  mapctx.fillStyle    = "#222";
   mapSize = mapCanvas.width / mapWidth > mapCanvas.height / mapHeight ? mapCanvas.width / mapWidth : mapCanvas.height / mapHeight;
 
   drawMapGrid();
@@ -25,7 +26,8 @@ function initMap() {
 
   mapctx = mapCanvas.getContext("2d");
   mapctx.imageSmoothingEnabled = false;
-  mapctx.strokeStyle = "#555"
+  mapctx.strokeStyle  = "#555";
+  mapctx.fillStyle    = "#222";
 
   mapWidth = 16;
   mapHeight = 64;

@@ -37,5 +37,5 @@ body {
   position: absolute;
   left: calc(15vw + var(--border_width));
   margin: 2.5vw;
-  background-color: white;
+  background-color: #222;
 }
