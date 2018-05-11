@@ -26,7 +26,7 @@
   display: none;
 }
 
-#inputfield > label {
+#inputfield > label:not(.hidden) {
   position: absolute;
   top: 0;
   left: 0;
@@ -35,7 +35,7 @@
   cursor: pointer;
 }
 
-#inputfield > label > span:not(.hidden) {
+#inputfield > label > span {
   width: 100%;
 
   position: absolute;
@@ -56,7 +56,7 @@
   animation: bounce 5s linear infinite;
 }
 
-#inputfield > label > span.hidden {
+#inputfield > label.hidden {
   display: none;
 }
 

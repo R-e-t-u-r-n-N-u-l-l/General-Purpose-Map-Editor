@@ -24,10 +24,12 @@ function initImageLoader() {
 }
 
 function processImage(file) {
-  if(file.type.split("/")[0] != "image")
+  if(file == undefined || file.type.split("/")[0] != "image")
     return;
 
-  document.querySelector("#inputfield > label > span").classList.add("hidden");
+
+
+  document.querySelector("#inputfield > label").classList.add("hidden");
 
   ImageLoaderData.loadedImage.src = window.URL.createObjectURL(file);
 
