@@ -6,6 +6,18 @@ var mapPrevX, mapPrevY;
 var mapSize;
 var map = [];
 
+function resizeMap() {
+  mapCanvas.width = 0.45 * window.innerWidth;
+  mapCanvas.height = window.innerHeight - 0.05 * window.innerWidth;
+
+  mapctx = mapCanvas.getContext("2d");
+  mapctx.imageSmoothingEnabled = false;
+  mapctx.strokeStyle = "#555"
+  mapSize = mapCanvas.width / mapWidth > mapCanvas.height / mapHeight ? mapCanvas.width / mapWidth : mapCanvas.height / mapHeight;
+
+  drawMapGrid();
+}
+
 function initMap() {
   mapCanvas = document.getElementById("map_canvas");
   mapCanvas.width = 0.45 * window.innerWidth;

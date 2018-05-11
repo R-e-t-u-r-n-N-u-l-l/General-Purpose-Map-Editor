@@ -7,6 +7,17 @@ const ImageLoaderData = {
   display:      null
 };
 
+function resizeImageLoader() {
+  ImageLoaderData.display.style.width   = "100%";
+  ImageLoaderData.display.style.height  = "100%";
+  ImageLoaderData.display.width   = ImageLoaderData.display.offsetWidth;
+  ImageLoaderData.display.height  = ImageLoaderData.display.offsetHeight;
+
+  ImageLoaderData.display.getContext("2d").imageSmoothingEnabled = false;
+  drawLoadedImage();
+  initSpriteSheet();
+}
+
 function initImageLoader() {
   ImageLoaderData.inputField  = document.querySelector("#inputfield");
   ImageLoaderData.fileInput   = document.querySelector("#inputfield > #file");
@@ -31,30 +42,29 @@ function processImage(file) {
   if(file == undefined || file.type.split("/")[0] != "image")
     return;
 
-
-
   document.querySelector("#inputfield > label").classList.add("hidden");
-
   ImageLoaderData.loadedImage.src = window.URL.createObjectURL(file);
-
   ImageLoaderData.loadedImage.onload = function() {
-    if(ImageLoaderData.loadedImage.height > ImageLoaderData.loadedImage.width) {
-      var width   = ImageLoaderData.display.width;
-      var height  = ImageLoaderData.display.width * (ImageLoaderData.loadedImage.height / ImageLoaderData.loadedImage.width);
-    }
-    else {
-      var height  = ImageLoaderData.display.height;
-      var width   = ImageLoaderData.display.height * (ImageLoaderData.loadedImage.width / ImageLoaderData.loadedImage.height);
-    }
-    ImageLoaderData.display.getContext("2d")
-      .clearRect(0, 0, ImageLoaderData.display.width, ImageLoaderData.display.height);
-    ImageLoaderData.display.getContext("2d")
-      .drawImage(
-        ImageLoaderData.loadedImage, 0, 0, width, height);
-
+    drawLoadedImage();
     drawMapGrid();
     initSpriteSheet();
   }
+}
+
+function drawLoadedImage() {
+  if(ImageLoaderData.loadedImage.height > ImageLoaderData.loadedImage.width) {
+    var width   = ImageLoaderData.display.width;
+    var height  = ImageLoaderData.display.width * (ImageLoaderData.loadedImage.height / ImageLoaderData.loadedImage.width);
+  }
+  else {
+    var height  = ImageLoaderData.display.height;
+    var width   = ImageLoaderData.display.height * (ImageLoaderData.loadedImage.width / ImageLoaderData.loadedImage.height);
+  }
+  ImageLoaderData.display.getContext("2d")
+    .clearRect(0, 0, ImageLoaderData.display.width, ImageLoaderData.display.height);
+  ImageLoaderData.display.getContext("2d")
+    .drawImage(
+      ImageLoaderData.loadedImage, 0, 0, width, height);
 }
 
 function onFileDrop(e) {

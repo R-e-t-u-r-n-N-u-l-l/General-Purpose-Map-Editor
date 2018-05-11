@@ -25,5 +25,6 @@ window.onmouseup = function(e) {
 }
 
 window.onresize = function(e) {
-
+  resizeImageLoader();
+  resizeMap();
 }
