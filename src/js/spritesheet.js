@@ -42,7 +42,7 @@ function spriteDown(e) {
   if (e.button == 2)
     spriteDrag = true;
   if (e.button == 0) {
-    SpriteSheet.currentTile = Math.floor((spritePrevY - spriteyOffset) / spriteSize) * Math.ceil(ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize) + Math.floor((spritePrevX - spritexOffset) / spriteSize);
+    SpriteSheet.currentTile = Math.floor((spritePrevY - spriteyOffset) / spriteSize) * Math.ceil(ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize) + Math.floor((spritePrevX - spritexOffset) / spriteSize) - 8;
     drawSpriteGrid();
   }
 }
@@ -73,6 +73,9 @@ function spriteUp(e) {
 function drawSpriteGrid() {
   spritectx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
 
+  spritectx.strokeStyle = "#555"
+  spritectx.lineWidth = 1;
+
   spritectx.drawImage(ImageLoaderData.loadedImage, spritexOffset, spriteyOffset, spriteWidth, spriteHeight);
   spritectx.beginPath();
 
@@ -87,4 +90,9 @@ function drawSpriteGrid() {
   }
 
   spritectx.stroke();
+
+  spritectx.strokeStyle = "#3BBB3B"
+  spritectx.lineWidth = 5;
+
+  spritectx.strokeRect(spritexOffset + SpriteSheet.currentTile % Math.ceil(ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize) * spriteSize, spriteyOffset + Math.floor(SpriteSheet.currentTile / Math.ceil(ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize)) * spriteSize, spriteSize, spriteSize);
 }
