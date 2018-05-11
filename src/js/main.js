@@ -22,3 +22,7 @@ window.onmousemove = function(e) {
 window.onmouseup = function(e) {
    mapUp(e);
 }
+
+window.onresize = function(e) {
+  
+}
