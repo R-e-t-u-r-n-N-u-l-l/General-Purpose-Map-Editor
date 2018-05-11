@@ -21,6 +21,8 @@ function initImageLoader() {
 
   ImageLoaderData.fileInput.addEventListener("change", onFileInput);
   ImageLoaderData.sizeInput.addEventListener("change", onTilesizeChange);
+
+  ImageLoaderData.display.getContext("2d").imageSmoothingEnabled = false;
 }
 
 function processImage(file) {
