@@ -3,7 +3,6 @@ var mapWidth, mapHeight;
 var mapxOffset, mapyOffset;
 var mapDrag = false, mapDraw = false;
 var mapPrevX, mapPrevY;
-var currentTile = 0;
 var mapSize;
 var map = [];
 
@@ -37,7 +36,7 @@ function mapDown(e) {
     mapDrag = true;
   if (e.button == 0) {
     mapDraw = true;
-    map[Math.floor((mapPrevY - mapyOffset) / mapSize) * mapWidth + Math.floor((mapPrevX - mapxOffset) / mapSize)] = currentTile;
+    map[Math.floor((mapPrevY - mapyOffset) / mapSize) * mapWidth + Math.floor((mapPrevX - mapxOffset) / mapSize)] = SpriteSheet.currentTile;
     drawMapGrid();
   }
 
@@ -60,7 +59,7 @@ function mapMove(e) {
   mapyOffset = mapyOffset < -mapSize * mapHeight + mapCanvas.height ? -mapSize * mapHeight + mapCanvas.height : mapyOffset;
 
   if (mapDraw)
-    map[Math.floor((mapPrevY - mapyOffset) / mapSize) * mapWidth + Math.floor((mapPrevX - mapxOffset) / mapSize)] = currentTile;
+    map[Math.floor((mapPrevY - mapyOffset) / mapSize) * mapWidth + Math.floor((mapPrevX - mapxOffset) / mapSize)] = SpriteSheet.currentTile;
 
   if (mapDraw || mapDrag)
     drawMapGrid();
@@ -82,7 +81,7 @@ function drawMapGrid() {
       if (map[j * mapWidth + i] == -1)
         mapctx.fillRect(mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize * (i + 1), mapSize * (j + 1));
       else
-        mapctx.drawImage(ImageLoaderData.loadedImage, ImageLoaderData.tilesize * (map[j * mapWidth + i] % (ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize)), ImageLoaderData.tilesize * Math.floor(map[j * mapWidth + i] / (ImageLoaderData.loadedImage.height / ImageLoaderData.tilesize)), ImageLoaderData.tilesize, ImageLoaderData.tilesize, mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize, mapSize);
+        mapctx.drawImage(ImageLoaderData.loadedImage, ImageLoaderData.tilesize * Math.floor(map[j * mapWidth + i] % (ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize)), ImageLoaderData.tilesize * Math.floor(map[j * mapWidth + i] / (ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize)), ImageLoaderData.tilesize, ImageLoaderData.tilesize, mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize, mapSize);
     }
   }
 

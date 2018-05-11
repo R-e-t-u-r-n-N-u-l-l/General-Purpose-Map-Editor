@@ -21,8 +21,9 @@ window.onmousemove = function(e) {
 
 window.onmouseup = function(e) {
    mapUp(e);
+   spriteUp(e);
 }
 
 window.onresize = function(e) {
-  
+
 }
