@@ -13,12 +13,13 @@ function readMap(file) {
 
 function processMapData(data) {
   var lines = data.split('\n');
+  lines.replace(/ /g, '');
 
-  MapLoader.width = parseInt(lines[0].split(", ")[0]);
-  MapLoader.height = parseInt(lines[0].split(", ")[1]);
+  MapLoader.width = parseInt(lines[0].split(",")[0]);
+  MapLoader.height = parseInt(lines[0].split(",")[1]);
 
   for (var i = 1; i < lines.length; i++) {
-    var values = lines[i].split(", ");
+    var values = lines[i].split(",");
     for (var j = 0; j < values.length; j++)
       MapLoader.mapData[(i - 1) * MapLoader.width + j] = parseInt(values);
   }
