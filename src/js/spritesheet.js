@@ -36,9 +36,9 @@ function initSpriteSheet() {
 }
 
 function spriteDown(e) {
-  spritePrevX = e.clientX - mapCanvas.getBoundingClientRect().left;
-  spritePrevY = e.clientY - mapCanvas.getBoundingClientRect().top;
-
+  spritePrevX = e.clientX - ImageLoaderData.display.getBoundingClientRect().left;
+  spritePrevY = e.clientY - ImageLoaderData.display.getBoundingClientRect().top;
+  
   if (e.button == 2)
     spriteDrag = true;
   if (e.button == 0) {
