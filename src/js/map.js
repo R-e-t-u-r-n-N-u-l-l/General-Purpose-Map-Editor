@@ -6,7 +6,7 @@ var validX, validY;
 var mapSize;
 
 function initMap() {
-  mapCanvas = document.getElementById("map_canvas");
+  mapCanvas = document.querySelector("#map_canvas");
   mapCanvas.width = 0.45 * window.innerWidth;
   mapCanvas.height = mapCanvas.width;
 
@@ -16,7 +16,7 @@ function initMap() {
   mapctx.fillStyle    = "#222";
 
   mapxOffset = mapyOffset = 0;
-  validX = validY = -1;
+  validX = validY = SpriteSheet.width > SpriteSheet.height ? SpriteSheet.width : SpriteSheet.height;
 
   mapCanvas.onmousedown = mapDown;
   mapCanvas.onmousemove = mapMove;
@@ -66,17 +66,18 @@ function mapUp(e) {
     mapDrag = false;
   if (e.button == 0) {
     mapDraw = false;
-    validX = validY = -1;
+    validX = validY = SpriteSheet.width > SpriteSheet.height ? SpriteSheet.width : SpriteSheet.height;
   }
 }
 
 function changeMap() {
-  if(Math.abs(Math.floor((mapPrevX - mapxOffset) / mapSize) - validX) >= SpriteSheet.width || Math.abs(Math.floor((mapPrevY - mapyOffset) / mapSize) - validY) >= SpriteSheet.height) {
-    validX = Math.floor((mapPrevX - mapxOffset) / mapSize);
-    validY = Math.floor((mapPrevY - mapyOffset) / mapSize);
-    console.log(validX);
-  } else
-    return;
+  if (document.querySelector("#sprMapping").checked()) {
+    if(Math.abs(Math.floor((mapPrevX - mapxOffset) / mapSize) - validX) >= SpriteSheet.width || Math.abs(Math.floor((mapPrevY - mapyOffset) / mapSize) - validY) >= SpriteSheet.height) {
+      validX = Math.floor((mapPrevX - mapxOffset) / mapSize);
+      validY = Math.floor((mapPrevY - mapyOffset) / mapSize);
+    } else
+      return;
+  }
   for (var i = 0; i < SpriteSheet.width; i++) {
     for (var j = 0; j < SpriteSheet.height; j++) {
       if (Math.floor((mapPrevX - mapxOffset) / mapSize + i) < MapLoader.width)
