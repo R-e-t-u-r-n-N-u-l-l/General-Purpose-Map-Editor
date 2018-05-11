@@ -39,3 +39,8 @@ window.onkeydown = function(e) {
 window.onkeyup = function(e) {
   delete Keys[e.key];
 }
+
+window.onblur = function(e) {
+  for(var key in Keys)
+    delete Keys[key];
+}
