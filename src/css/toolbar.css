@@ -1,5 +1,6 @@
 #toolbar {
   --toolbar_width: calc(40vw - 3vh - 30vw - var(--border_width) * 2 - 2vw);
+  --tool_width: calc(var(--toolbar_width) * 0.6);
   width: var(--toolbar_width);
   min-height: 100vh;
   border-right: 2px solid #333;
@@ -7,8 +8,8 @@
 }
 
 .tool {
-  width: calc(var(--toolbar_width) * 0.8);
-  height: calc(var(--toolbar_width) * 0.8);
+  width: var(--tool_width);
+  height: var(--tool_width);
 
   margin: auto;
   margin-top: calc(var(--toolbar_width) * 0.1);
@@ -38,8 +39,8 @@
   height: 100%;
 
   text-align: center;
-  font-size: calc(var(--toolbar_width) * 0.4);
-  line-height: calc(var(--toolbar_width) * 0.8);
+  font-size: calc(var(--tool_width) / 2);
+  line-height: var(--tool_width);
   color: inherit;
 }
 
