@@ -4,6 +4,11 @@ const MapLoader = {
   height: 32
 }
 
+function initMapLoader() {
+  for (var i = 0; i < MapLoader.width * MapLoader.height; i++)
+    MapLoader.mapData[i] = 0;
+}
+
 function readMap(file) {
   if(file == undefined || file.type.split("/")[0] != "text")
     return;

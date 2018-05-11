@@ -30,7 +30,7 @@ function mapDown(e) {
     mapDrag = true;
   if (e.button == 0) {
     mapDraw = true;
-    MapLoader.mapData[Math.floor((mapPrevY - mapyOffset) / mapSize) * MapLoader.width + Math.floor((mapPrevX - mapxOffset) / mapSize)] = SpriteSheet.currentTile;
+    changeMap();
     drawMapGrid();
   }
 
@@ -53,7 +53,7 @@ function mapMove(e) {
   mapyOffset = mapyOffset < -mapSize * MapLoader.height + mapCanvas.height ? -mapSize * MapLoader.height + mapCanvas.height : mapyOffset;
 
   if (mapDraw)
-    MapLoader.mapData[Math.floor((mapPrevY - mapyOffset) / mapSize) * MapLoader.width + Math.floor((mapPrevX - mapxOffset) / mapSize)] = SpriteSheet.currentTile;
+    changeMap();
 
   if (mapDraw || mapDrag)
     drawMapGrid();
@@ -64,6 +64,12 @@ function mapUp(e) {
     mapDrag = false;
   if (e.button == 0)
     mapDraw = false;
+}
+
+function changeMap() {
+  for (var i = 0; i < SpriteSheet.width; i++)
+    for (var j = 0; j < SpriteSheet.height; j++)
+      MapLoader.mapData[Math.floor((mapPrevY - mapyOffset) / mapSize + j) * MapLoader.width + Math.floor((mapPrevX - mapxOffset) / mapSize + i)] = SpriteSheet.currentTile[j * SpriteSheet.width + i];
 }
 
 function drawMapGrid() {
