@@ -16,7 +16,7 @@ function initMap() {
   mapctx.fillStyle    = "#222";
 
   mapxOffset = mapyOffset = 0;
-  validX = validY = 0;
+  validX = validY = -1;
 
   mapCanvas.onmousedown = mapDown;
   mapCanvas.onmousemove = mapMove;
@@ -66,7 +66,7 @@ function mapUp(e) {
     mapDrag = false;
   if (e.button == 0) {
     mapDraw = false;
-    validX = validY = 0;
+    validX = validY = -1;
   }
 }
 
