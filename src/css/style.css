@@ -8,14 +8,14 @@
 
 body {
   margin: 0;
-  background-color: var(--bg_color);
+  background: /* url('https://www.transparenttextures.com/patterns/purty-wood.png') */ var(--bg_color);
   overflow: hidden;
 }
 
 .window {
   position: absolute;
   top: 0;
-  background-color: var(--window_color);
+  background: /* url('https://t6.rbxcdn.com/f62c5681a108d3839e0e5cf0583667c5') */ var(--window_color);
   border: 5px solid var(--border_color);
   height: calc(100vh - 10px);
 }
