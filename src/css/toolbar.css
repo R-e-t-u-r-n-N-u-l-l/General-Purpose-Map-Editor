@@ -8,6 +8,7 @@
 }
 
 .tool {
+  display: block;
   width: var(--tool_width);
   height: var(--tool_width);
 
