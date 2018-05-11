@@ -14,7 +14,6 @@
   border-radius: 25px 25px 25px 0;
   border: var(--border_width) solid var(--border_color);
   filter: drop-shadow(0 0 10px var(--bg_color));
-  opacity: 0.8;
 }
 
 #inputfield > #tilesize {
