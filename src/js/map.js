@@ -7,7 +7,7 @@ var mapSize;
 function initMap() {
   mapCanvas = document.getElementById("map_canvas");
   mapCanvas.width = 0.45 * window.innerWidth;
-  mapCanvas.height = window.innerHeight - 0.05 * window.innerWidth;
+  mapCanvas.height = mapCanvas.width;
 
   mapctx = mapCanvas.getContext("2d");
   mapctx.imageSmoothingEnabled = false;
