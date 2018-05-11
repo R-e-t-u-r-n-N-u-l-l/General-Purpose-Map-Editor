@@ -42,7 +42,7 @@ function spriteDown(e) {
   if (e.button == 2)
     spriteDrag = true;
   if (e.button == 0) {
-    SpriteSheet.currentTile = Math.floor((spritePrevY - spriteyOffset) / spriteSize) * Math.ceil(ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize) + Math.floor((spritePrevX - spritexOffset) / spriteSize) - 8;
+    SpriteSheet.currentTile = Math.floor((spritePrevY - spriteyOffset) / spriteSize) * Math.ceil(ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize) + Math.floor((spritePrevX - spritexOffset) / spriteSize);
     drawSpriteGrid();
   }
 }
