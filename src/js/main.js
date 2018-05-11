@@ -1,3 +1,5 @@
+const Keys = {};
+
 window.onload = function(e) {
   initImageLoader();
   initMap();
@@ -27,4 +29,12 @@ window.onmouseup = function(e) {
 window.onresize = function(e) {
   resizeImageLoader();
   resizeMap();
+}
+
+window.onkeydown = function(e) {
+  Keys[e.key] = 1;
+}
+
+window.onkeyup = function(e) {
+  delete Keys[e.key];
 }
