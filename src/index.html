@@ -10,6 +10,7 @@
     <script src="js/map.js"></script>
     <script src="js/main.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/options.css">
     <link rel="stylesheet" type="text/css" href="css/toolbar.css">
     <link rel="stylesheet" type="text/css" href="css/imageloader.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -24,7 +25,7 @@
         <div title="pencil" class="tool selected"><i class="fas fa-pencil-alt"></i></div>
         <div title="fill"   class="tool"><i class="fab fa-bitbucket"></i></div>
         <div class="tool hidden"></div>
-        <div title="export" class="tool"><i class="far fa-save"></i></div>
+        <div title="export" class="tool" onclick="downloadMap()"><i class="far fa-save"></i></div>
         <label for="mapInput" title="import" class="tool"><i class="fas fa-upload"></i></label>
         <input id="mapInput" type="file" accept=".txt" onchange="readMap(this.files[0])" style="display: none;" />
       </div>
@@ -38,11 +39,19 @@
 
       </div>
 
+      <div id="options">
+        <div class="option checkbox">
+          <input id="sprMapping" type="checkbox" />
+          <label for="sprMapping"></label>
+          <span>ALLDFDLS</span>
+        </div><br /><hr />
+        <div class="option checkbox">
+          <input id="opt2" type="checkbox" />
+          <label for="opt2"></label>
+          <span>aldsldfjl</span>
+        </div>
+      </div>
+
     </div>
-
-    <div id="options">
-
-    </div>
-
   </body>
 </html>
