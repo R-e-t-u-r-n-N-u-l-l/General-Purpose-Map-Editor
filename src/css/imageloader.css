@@ -53,6 +53,7 @@
   margin-bottom: 1.5vh;
   font-size: calc((4vw + 4vh) / 2);
   color: #444;
+  animation: bounce 7.5s linear infinite;
 }
 
 #inputfield > label > span.hidden {
@@ -63,4 +64,31 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  6% {
+    transform: scaleY(0.9) translateY(1vh);
+  }
+  8% {
+    transform: scaleY(1.05) translateY(0);
+  }
+  10% {
+    transform: scaleY(1.1) translateY(-15%);
+  }
+  12% {
+    transform: scaleY(1) translateY(0);
+  }
+  14% {
+    transform: translateY(-2%);
+  }
+  17% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
