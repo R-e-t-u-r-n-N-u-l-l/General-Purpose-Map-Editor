@@ -70,6 +70,7 @@ function drawLoadedImage() {
 function onFileDrop(e) {
   e.preventDefault();
   processImage(e.dataTransfer.files[0]);
+  readMap(e.dataTransfer.files[0]);
 }
 
 function onFileInput(e) {

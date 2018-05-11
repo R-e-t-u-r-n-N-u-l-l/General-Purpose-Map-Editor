@@ -1,23 +1,8 @@
 var mapCanvas, mapctx;
-var mapWidth, mapHeight;
 var mapxOffset, mapyOffset;
 var mapDrag = false, mapDraw = false;
 var mapPrevX, mapPrevY;
 var mapSize;
-var map = [];
-
-function resizeMap() {
-  mapCanvas.width = 0.45 * window.innerWidth;
-  mapCanvas.height = window.innerHeight - 0.05 * window.innerWidth;
-
-  mapctx = mapCanvas.getContext("2d");
-  mapctx.imageSmoothingEnabled = false;
-  mapctx.strokeStyle  = "#555"
-  mapctx.fillStyle    = "#222";
-  mapSize = mapCanvas.width / mapWidth > mapCanvas.height / mapHeight ? mapCanvas.width / mapWidth : mapCanvas.height / mapHeight;
-
-  drawMapGrid();
-}
 
 function initMap() {
   mapCanvas = document.getElementById("map_canvas");
@@ -29,19 +14,13 @@ function initMap() {
   mapctx.strokeStyle  = "#555";
   mapctx.fillStyle    = "#222";
 
-  mapWidth = 16;
-  mapHeight = 64;
-
   mapxOffset = mapyOffset = 0;
 
   mapCanvas.onmousedown = mapDown;
   mapCanvas.onmousemove = mapMove;
   mapCanvas.oncontextmenu = function(e) { e.preventDefault(); };
 
-  mapSize = mapCanvas.width / mapWidth > mapCanvas.height / mapHeight ? mapCanvas.width / mapWidth : mapCanvas.height / mapHeight;
-
-  for (var i = 0; i < mapWidth * mapHeight; i++)
-    map[i] = 0;
+  mapSize = mapCanvas.width / MapLoader.width > mapCanvas.height / MapLoader.height ? mapCanvas.width / MapLoader.width : mapCanvas.height / MapLoader.height;
 
   drawMapGrid();
 }
@@ -51,7 +30,7 @@ function mapDown(e) {
     mapDrag = true;
   if (e.button == 0) {
     mapDraw = true;
-    map[Math.floor((mapPrevY - mapyOffset) / mapSize) * mapWidth + Math.floor((mapPrevX - mapxOffset) / mapSize)] = SpriteSheet.currentTile;
+    MapLoader.mapData[Math.floor((mapPrevY - mapyOffset) / mapSize) * MapLoader.width + Math.floor((mapPrevX - mapxOffset) / mapSize)] = SpriteSheet.currentTile;
     drawMapGrid();
   }
 
@@ -70,11 +49,11 @@ function mapMove(e) {
 
   mapxOffset = mapxOffset > 0 ? 0 : mapxOffset;
   mapyOffset = mapyOffset > 0 ? 0 : mapyOffset;
-  mapxOffset = mapxOffset < -mapSize * mapWidth + mapCanvas.width ? -mapSize * mapWidth + mapCanvas.width : mapxOffset;
-  mapyOffset = mapyOffset < -mapSize * mapHeight + mapCanvas.height ? -mapSize * mapHeight + mapCanvas.height : mapyOffset;
+  mapxOffset = mapxOffset < -mapSize * MapLoader.width + mapCanvas.width ? -mapSize * MapLoader.width + mapCanvas.width : mapxOffset;
+  mapyOffset = mapyOffset < -mapSize * MapLoader.height + mapCanvas.height ? -mapSize * MapLoader.height + mapCanvas.height : mapyOffset;
 
   if (mapDraw)
-    map[Math.floor((mapPrevY - mapyOffset) / mapSize) * mapWidth + Math.floor((mapPrevX - mapxOffset) / mapSize)] = SpriteSheet.currentTile;
+    MapLoader.mapData[Math.floor((mapPrevY - mapyOffset) / mapSize) * MapLoader.width + Math.floor((mapPrevX - mapxOffset) / mapSize)] = SpriteSheet.currentTile;
 
   if (mapDraw || mapDrag)
     drawMapGrid();
@@ -91,16 +70,17 @@ function drawMapGrid() {
   mapctx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
   mapctx.beginPath();
 
-  for (var i = 0; i < mapWidth; i++)
-    for (var j = 0; j < mapHeight; j++)
-        mapctx.drawImage(ImageLoaderData.loadedImage, ImageLoaderData.tilesize * Math.floor(map[j * mapWidth + i] % (ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize)), ImageLoaderData.tilesize * Math.floor(map[j * mapWidth + i] / (ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize)), ImageLoaderData.tilesize, ImageLoaderData.tilesize, mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize, mapSize);
+  for (var i = 0; i < MapLoader.width; i++)
+    for (var j = 0; j < MapLoader.height; j++)
+        mapctx.drawImage(ImageLoaderData.loadedImage, ImageLoaderData.tilesize * Math.floor(MapLoader.mapData[j * MapLoader.width + i] % (ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize)),
+        ImageLoaderData.tilesize * Math.floor(MapLoader.mapData[j * MapLoader.width + i] / (ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize)), ImageLoaderData.tilesize, ImageLoaderData.tilesize, mapxOffset + mapSize * i, mapyOffset + mapSize * j, mapSize, mapSize);
 
-  for (var i = 1; i < mapWidth; i++) {
+  for (var i = 1; i < MapLoader.width; i++) {
       mapctx.moveTo(mapxOffset + mapSize * i, 0);
       mapctx.lineTo(mapxOffset + mapSize * i, mapCanvas.height);
   }
 
-  for (var i = 1; i < mapHeight; i++) {
+  for (var i = 1; i < MapLoader.height; i++) {
       mapctx.moveTo(0, mapyOffset + mapSize * i);
       mapctx.lineTo(mapCanvas.width, mapyOffset + mapSize * i);
   }

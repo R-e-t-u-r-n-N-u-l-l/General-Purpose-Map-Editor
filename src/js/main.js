@@ -29,7 +29,7 @@ window.onmouseup = function(e) {
 
 window.onresize = function(e) {
   resizeImageLoader();
-  resizeMap();
+  initMap();
 }
 
 window.onkeydown = function(e) {
