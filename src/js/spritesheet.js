@@ -26,8 +26,8 @@ function initSpriteSheet() {
     spriteHeight = ImageLoaderData.display.width * (ImageLoaderData.loadedImage.height / ImageLoaderData.loadedImage.width);
   }
   else {
-    spriteWidth  = ImageLoaderData.display.height;
-    spriteHeight = ImageLoaderData.display.height * (ImageLoaderData.loadedImage.width / ImageLoaderData.loadedImage.height);
+    spriteHeight = ImageLoaderData.display.height;
+    spriteWidth  = ImageLoaderData.display.height * (ImageLoaderData.loadedImage.width / ImageLoaderData.loadedImage.height);
   }
 
   spriteSize = (spriteWidth / (ImageLoaderData.loadedImage.width / ImageLoaderData.tilesize));
@@ -38,7 +38,7 @@ function initSpriteSheet() {
 function spriteDown(e) {
   spritePrevX = e.clientX - ImageLoaderData.display.getBoundingClientRect().left;
   spritePrevY = e.clientY - ImageLoaderData.display.getBoundingClientRect().top;
-  
+
   if (e.button == 2)
     spriteDrag = true;
   if (e.button == 0) {

@@ -1,12 +1,12 @@
 #sprite_sheet {
   border-radius: 2vh 0 0 2vh;
-  margin-left: 65vw;
-  width: 35vw;
+  margin-left: 60vw;
+  width: 40vw;
 }
 
 #inputfield {
   position: relative;
-  margin: auto;
+  margin-left: calc(40vw - 3vh - 30vw - var(--border_width) * 2);
   margin-top: 3vh;
   width: 30vw;
   height: 30vw;

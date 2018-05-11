@@ -1,41 +1,28 @@
 :root {
   --bg_color: #4A2600;
   --window_color: #8A5127;
-  --border_color: #866137;
+  --border_color: #906A41;
   --border_width: 5px;
   --sprite_canvas_size: 30vw;
 }
 
 body {
   margin: 0;
-  background: /* url('https://www.transparenttextures.com/patterns/purty-wood.png') */ var(--bg_color);
+  background: url('https://www.transparenttextures.com/patterns/purty-wood.png') var(--bg_color);
   overflow: hidden;
 }
 
 .window {
   position: absolute;
   top: 0;
-  background: /* url('https://t6.rbxcdn.com/f62c5681a108d3839e0e5cf0583667c5') */ var(--window_color);
+  background: url('https://t6.rbxcdn.com/f62c5681a108d3839e0e5cf0583667c5') var(--window_color);
   border: 5px solid var(--border_color);
   height: calc(100vh - 10px);
 }
 
-/* canvas {
-  position: absolute;
-  margin: 2.5vw;
-  background-color: white;
-  border: 3px solid black;
-} */
-
-#toolbar {
-  border-radius: 0 2vh 2vh 0;
-  margin-left: calc(-1 * var(--border_width));
-  width: 15vw;
-}
-
 #map_canvas {
-  position: absolute;
-  left: calc(15vw + var(--border_width));
-  margin: 2.5vw;
+  position: relative;
+  margin-left: calc((60vw - 45vw) / 2);
+  margin-top: 2.5vw;
   background-color: #222;
 }
