@@ -47,5 +47,7 @@ function downloadMap() {
   link.download = 'map.txt';
   var blob = new Blob([data], {type: 'text/plain'});
   link.href = window.URL.createObjectURL(blob);
+  document.body.appendChild(link);
   link.click();
+  link.remove();
 }
