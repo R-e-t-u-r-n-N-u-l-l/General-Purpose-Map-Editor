@@ -64,17 +64,19 @@ function mapMove(e) {
 function mapUp(e) {
   if (e.button == 2)
     mapDrag = false;
-  if (e.button == 0)
+  if (e.button == 0) {
     mapDraw = false;
+    validX = validY = 0;
+  }
 }
 
 function changeMap() {
-  // if(Math.abs(Math.floor((mapPrevX - mapxOffset) / mapSize) - validX) >= SpriteSheet.width || Math.abs(Math.floor((mapPrevY - mapyOffset) / mapSize) - validY) >= SpriteSheet.height) {
-  //   validX = Math.floor((mapPrevX - mapxOffset) / mapSize);
-  //   validY = Math.floor((mapPrevY - mapyOffset) / mapSize);
-  //   console.log(validX);
-  // } else
-  //   return;
+  if(Math.abs(Math.floor((mapPrevX - mapxOffset) / mapSize) - validX) >= SpriteSheet.width || Math.abs(Math.floor((mapPrevY - mapyOffset) / mapSize) - validY) >= SpriteSheet.height) {
+    validX = Math.floor((mapPrevX - mapxOffset) / mapSize);
+    validY = Math.floor((mapPrevY - mapyOffset) / mapSize);
+    console.log(validX);
+  } else
+    return;
   for (var i = 0; i < SpriteSheet.width; i++) {
     for (var j = 0; j < SpriteSheet.height; j++) {
       if (Math.floor((mapPrevX - mapxOffset) / mapSize + i) < MapLoader.width)
