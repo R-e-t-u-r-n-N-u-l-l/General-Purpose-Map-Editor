@@ -1,6 +1,7 @@
 const Keys = {};
 
 window.onload = function(e) {
+  initTools();
   initImageLoader();
   initMap();
 }
