@@ -32,7 +32,12 @@ function mapDown(e) {
     mapDrag = true;
   if (e.button == 0) {
     mapDraw = true;
-    changeMap();
+    var x = Math.floor((mapPrevX - mapxOffset) / mapSize);
+    var y = Math.floor((mapPrevY - mapyOffset) / mapSize);
+    if (document.querySelector(".selected").title == "fill")
+      fill(MapLoader.mapData[y * MapLoader.width + x], x, y, SpriteSheet.currentTile[0]);
+    if (document.querySelector(".selected").title == "pencil")
+      changeMap();
     drawMapGrid();
   }
 
@@ -70,13 +75,29 @@ function mapUp(e) {
   }
 }
 
+function fill(id, x, y, newID) {
+  if (id != MapLoader.mapData[y * MapLoader.width + x])
+    return;
+
+  MapLoader.mapData[y * MapLoader.width + x] = newID;
+
+  if (x + 1 < MapLoader.width)
+    fill(id, x + 1, y, newID);
+  if (x - 1 >= 0)
+    fill(id, x - 1, y, newID);
+  if (y + 1 < MapLoader.height)
+    fill(id, x, y + 1, newID);
+  if (y - 1 >= 0)
+    fill(id, x, y - 1, newID);
+}
+
 function changeMap() {
-  if (document.querySelector("#sprMapping").checked()) {
-    if(Math.abs(Math.floor((mapPrevX - mapxOffset) / mapSize) - validX) >= SpriteSheet.width || Math.abs(Math.floor((mapPrevY - mapyOffset) / mapSize) - validY) >= SpriteSheet.height) {
-      validX = Math.floor((mapPrevX - mapxOffset) / mapSize);
-      validY = Math.floor((mapPrevY - mapyOffset) / mapSize);
-    } else
-      return;
+  if (document.querySelector("#sprMapping").checked) {
+   if(Math.abs(Math.floor((mapPrevX - mapxOffset) / mapSize) - validX) >= SpriteSheet.width || Math.abs(Math.floor((mapPrevY - mapyOffset) / mapSize) - validY) >= SpriteSheet.height) {
+     validX = Math.floor((mapPrevX - mapxOffset) / mapSize);
+     validY = Math.floor((mapPrevY - mapyOffset) / mapSize);
+   } else
+     return;
   }
   for (var i = 0; i < SpriteSheet.width; i++) {
     for (var j = 0; j < SpriteSheet.height; j++) {
