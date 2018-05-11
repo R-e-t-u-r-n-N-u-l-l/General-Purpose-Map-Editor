@@ -23,6 +23,6 @@ body {
 #map_canvas {
   position: relative;
   margin-left: calc((60vw - 45vw) / 2);
-  margin-top: 2.5vw;
+  margin-top: calc((100vh - 45vw) / 2);
   background-color: #222;
 }
