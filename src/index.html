@@ -8,6 +8,7 @@
     <script src="js/map.js"></script>
     <script src="js/main.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/toolbar.css">
     <link rel="stylesheet" type="text/css" href="css/imageloader.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   </head>
@@ -16,6 +17,14 @@
     <canvas id="map_canvas"></canvas>
 
     <div class="window" id="sprite_sheet">
+
+      <div id="toolbar">
+        <div class="tool selected"><i class="fas fa-pencil-alt"></i></div>
+        <div class="tool"><i class="fas fa-eraser"></i></div>
+        <div class="tool hidden"></div>
+        <div class="tool"><i class="far fa-save"></i></div>
+        <div class="tool"><i class="fas fa-upload"></i></div>
+      </div>
 
       <div id="inputfield" title="Drag 'n' Drop">
 
